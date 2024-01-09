@@ -1,7 +1,36 @@
 ---
+import { wpquery } from "../data/wordpress";
 import Layout from "../pages/layouts/default.astro";
+
+const data = await wpquery({
+  query: `
+    query LoadAllPostsExcerpts {
+      posts {
+        nodes {
+          title
+          slug
+          excerpt
+        }
+      }
+    }
+  `,
+});
 ---
 
-<Layout>
-  <h1>hi</h1>
+<Layout title="Food Truth">
+  <h1>Posts</h1>
+
+  {
+    data.posts.nodes.map((post: any) => {
+      return (
+        <article class="post-preview">
+          <h2>
+            <a href={`/blog/${post.slug}`}>{post.title}</a>
+          </h2>
+          <Fragment set:html={post.excerpt} />
+          <a href={`/blog/${post.slug}`}>read post &rarr;</a>
+        </article>
+      );
+    })
+  }
 </Layout>

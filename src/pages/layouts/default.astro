@@ -9,8 +9,10 @@
     <meta name="generator" content={Astro.generator} />
     <title>Following Learn With Jason</title>
   </head>
-  <body>
-    <header>
+  <body class="">
+    <header
+      class="bg-yellow-400/20 py-3 w-full justify-between flex px-20 font-semibold"
+    >
       <a href="/">
         <span role="img" aria-label="Cheese">🧀</span>
         Food Truth</a
@@ -25,7 +27,7 @@
       </nav>
     </header>
 
-    <main>
+    <main class="mx-auto m-10 prose container max-w-4xl">
       <slot />
     </main>
   </body>
